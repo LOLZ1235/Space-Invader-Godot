@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Space Invader/e.png" type="Texture" id=2]
+[ext_resource path="res://Audio/blast.ogg" type="AudioStream" id=3]
+
+[node name="Enemy" type="KinematicBody2D"]
+position = Vector2( -84, 6 )
+collision_layer = 16
+collision_mask = 35
+script = ExtResource( 1 )
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+position = Vector2( 83.375, -6.51195 )
+rotation = 4.71239
+scale = Vector2( 1, 0.68 )
+enabled = true
+collision_mask = 4
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+position = Vector2( 79.9306, -3.75402 )
+rotation = 1.5708
+scale = Vector2( 1.18325, 0.599935 )
+enabled = true
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( -82.0553, -312.761 )
+polygon = PoolVector2Array( 160.965, 288.655, 173.565, 288.655, 177.974, 295.9, 182.699, 300.939, 195.928, 309.129, 181.754, 318.578, 180.494, 321.413, 148.996, 322.043, 146.791, 318.578, 132.932, 309.759, 148.051, 299.994, 149.311, 297.475, 152.146, 296.53, 154.666, 289.6 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( -73.7798, 144.52 )
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PoolVector2Array( 154.601, -169.757, 165.27, -169.705, 168.738, -164.186, 172.89, -158.826, 179.617, -154.096, 188.07, -148.921, 188.82, -148.359, 174.418, -137.651, 173.092, -135.088, 171.28, -133.52, 140.155, -133.145, 137.405, -136.02, 123.405, -146.77, 129.78, -153.145, 137.53, -158.02, 139.405, -160.645, 141.53, -162.77, 144.405, -169.145 )
+
+[node name="Blast" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -183.525, 17.818 )
+stream = ExtResource( 3 )
+area_mask = 8
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 82.0927, -6.67419 )
+texture = ExtResource( 2 )
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_Area2D_area_shape_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

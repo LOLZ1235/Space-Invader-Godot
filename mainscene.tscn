@@ -1,0 +1,232 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Space Invader/background.png" type="Texture" id=2]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Hud.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Hud.gd" type="Script" id=6]
+[ext_resource path="res://Audio/bg.ogg" type="AudioStream" id=7]
+[ext_resource path="res://mainscene.gd" type="Script" id=8]
+[ext_resource path="res://Fonts/pdark.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://Controller/fire.png" type="Texture" id=10]
+[ext_resource path="res://Controller/down.png" type="Texture" id=11]
+[ext_resource path="res://Controller/right.png" type="Texture" id=12]
+[ext_resource path="res://Controller/left.png" type="Texture" id=13]
+[ext_resource path="res://Controller/up.png" type="Texture" id=14]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 18.2286, 531.394 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 9 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 509.052, 23.7148 )
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id=7]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 40.0
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 15, 15 )
+
+[sub_resource type="Environment" id=10]
+ambient_light_color = Color( 0.956863, 0.956863, 0.956863, 1 )
+ambient_light_energy = 2.1
+auto_exposure_enabled = true
+auto_exposure_scale = 14.78
+auto_exposure_min_luma = 0.98
+ss_reflections_enabled = true
+glow_enabled = true
+glow_intensity = 7.31
+glow_bloom = 0.39
+glow_hdr_threshold = 3.07
+glow_hdr_luminance_cap = 12.95
+adjustment_enabled = true
+adjustment_brightness = 5.28
+adjustment_contrast = 1.26
+adjustment_saturation = 1.3
+
+[node name="mainscene" type="Node2D"]
+position = Vector2( 236.876, 22.641 )
+scale = Vector2( 1.30489, 0.93157 )
+script = ExtResource( 8 )
+
+[node name="BackGround" type="Sprite" parent="."]
+position = Vector2( 305.51, 351.049 )
+scale = Vector2( 1.08338, 1.0112 )
+texture = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 315.07, 562.233 )
+
+[node name="Enemy" parent="." instance=ExtResource( 3 )]
+position = Vector2( 64.1739, 172.693 )
+collision_layer = 2
+collision_mask = 13
+
+[node name="Enemy2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 210.325, 131.116 )
+collision_layer = 2
+collision_mask = 13
+
+[node name="Enemy3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 25.1164, 89.5384 )
+collision_layer = 2
+collision_mask = 13
+
+[node name="Enemy4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 396.793, 196.632 )
+collision_layer = 2
+collision_mask = 13
+
+[node name="Enemy5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 439.63, 95.838 )
+collision_layer = 2
+collision_mask = 13
+
+[node name="Enemy6" parent="." instance=ExtResource( 3 )]
+position = Vector2( -97.096, 182.773 )
+collision_layer = 2
+collision_mask = 13
+
+[node name="Borders" type="Node2D" parent="."]
+position = Vector2( -1.88773, -5.66327 )
+
+[node name="RigidBody2D" type="RigidBody2D" parent="Borders"]
+position = Vector2( -316.784, 25.4558 )
+collision_layer = 4
+collision_mask = 3
+mode = 1
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/RigidBody2D"]
+position = Vector2( 125.504, 322.116 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders/RigidBody2D"]
+position = Vector2( 1130.32, 350.307 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders/RigidBody2D"]
+position = Vector2( 608.327, -58.0556 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders/RigidBody2D"]
+position = Vector2( 604.536, 737.014 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Hud" parent="." instance=ExtResource( 5 )]
+script = ExtResource( 6 )
+
+[node name="Label" type="Label" parent="Hud"]
+margin_left = 20.0459
+margin_top = 15.5051
+margin_right = 202.046
+margin_bottom = 98.5051
+custom_fonts/font = SubResource( 2 )
+text = "Kills 
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="kills" type="Label" parent="Hud"]
+margin_left = 226.699
+margin_top = 19.1748
+margin_right = 318.699
+margin_bottom = 69.1748
+custom_fonts/font = SubResource( 3 )
+text = "XX"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background sounds" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="background sounds"]
+stream = ExtResource( 7 )
+volume_db = -10.0
+autoplay = true
+mix_target = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 289.252, 721.276 )
+shape = SubResource( 4 )
+
+[node name="controls" type="CanvasLayer" parent="."]
+
+[node name="Left" type="TouchScreenButton" parent="controls"]
+position = Vector2( 22.9825, 426.647 )
+scale = Vector2( 1.5, 1.5 )
+normal = ExtResource( 13 )
+shape = SubResource( 5 )
+action = "move_left"
+
+[node name="Up" type="TouchScreenButton" parent="controls"]
+position = Vector2( 135.632, 326.131 )
+scale = Vector2( 1.5, 1.5 )
+normal = ExtResource( 14 )
+shape = SubResource( 6 )
+action = "move_up"
+
+[node name="Down" type="TouchScreenButton" parent="controls"]
+position = Vector2( 133.391, 525.29 )
+scale = Vector2( 1.5, 1.5 )
+normal = ExtResource( 11 )
+shape = SubResource( 7 )
+action = "move_down"
+
+[node name="right" type="TouchScreenButton" parent="controls"]
+position = Vector2( 252.346, 421.736 )
+scale = Vector2( 1.5, 1.5 )
+normal = ExtResource( 12 )
+shape = SubResource( 8 )
+action = "move_right"
+
+[node name="Fires" type="TouchScreenButton" parent="controls"]
+position = Vector2( 1082.44, 366.26 )
+scale = Vector2( 3.77799, 3.66009 )
+normal = ExtResource( 10 )
+shape = SubResource( 9 )
+action = "Fire"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 10 )
+[connection signal="kill" from="Enemy" to="Hud" method="_on_Enemy_kill"]
+[connection signal="killed" from="Enemy" to="." method="_on_Enemy_killed"]
+[connection signal="kill" from="Enemy2" to="Hud" method="_on_Enemy_kill"]
+[connection signal="kill" from="Enemy2" to="." method="_on_Enemy2_kill"]
+[connection signal="killed" from="Enemy2" to="." method="_on_Enemy_killed"]
+[connection signal="kill" from="Enemy3" to="Hud" method="_on_Enemy_kill"]
+[connection signal="killed" from="Enemy3" to="." method="_on_Enemy3_killed"]
+[connection signal="killed" from="Enemy3" to="." method="_on_Enemy_killed"]
+[connection signal="kill" from="Enemy4" to="Hud" method="_on_Enemy_kill"]
+[connection signal="killed" from="Enemy4" to="." method="_on_Enemy_killed"]
+[connection signal="killed" from="Enemy4" to="." method="_on_Enemy4_killed"]
+[connection signal="kill" from="Enemy5" to="Hud" method="_on_Enemy_kill"]
+[connection signal="killed" from="Enemy5" to="." method="_on_Enemy_killed"]
+[connection signal="killed" from="Enemy5" to="." method="_on_Enemy5_killed"]
+[connection signal="kill" from="Enemy6" to="Hud" method="_on_Enemy_kill"]
+[connection signal="killed" from="Enemy6" to="." method="_on_Enemy6_killed"]
+[connection signal="killed" from="Enemy6" to="." method="_on_Enemy_killed"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -1,0 +1,137 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Fonts/pdark.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Turtorial.gd" type="Script" id=4]
+[ext_resource path="res://Controller/fire.png" type="Texture" id=5]
+[ext_resource path="res://Controller/down.png" type="Texture" id=6]
+[ext_resource path="res://Controller/right.png" type="Texture" id=7]
+[ext_resource path="res://Controller/left.png" type="Texture" id=8]
+[ext_resource path="res://Controller/up.png" type="Texture" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 31.8277, 761.726 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+font_data = ExtResource( 3 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 40.0
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 40.0
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 25, 25 )
+
+[node name="Turtorial" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 721.146, 607.505 )
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_layer = 4
+mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2( 425.105, 435.048 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2( 1000.67, 471.13 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2( 578.537, 750.08 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2( 673.227, 322.459 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+visible = false
+margin_left = 13.8943
+margin_top = 13.8943
+margin_right = 1258.89
+margin_bottom = 367.894
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.0588235, 0.737255, 0.027451, 1 )
+custom_colors/font_outline_modulate = Color( 0.894118, 0.0392157, 0.0392157, 1 )
+text = "To Move Use Arrow keys or WASD or 
+
+TouchButtons On the Screen  
+
+To Fire Press Space OR Fire Icon in the 
+
+Right Corner.    Attack The Ufo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 13.8943
+margin_top = 13.8943
+margin_right = 1258.89
+margin_bottom = 367.894
+custom_fonts/font = SubResource( 2 )
+text = "    To Move Use Arrow keys or WASD
+
+         To FIRE press space key
+	
+	           now destroy the ufo"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Enemy" parent="." instance=ExtResource( 2 )]
+position = Vector2( 638.144, 400.701 )
+
+[node name="controls" type="CanvasLayer" parent="."]
+
+[node name="up" type="TouchScreenButton" parent="controls"]
+position = Vector2( 144.642, 364.574 )
+scale = Vector2( 1.5, 1.5 )
+normal = ExtResource( 9 )
+shape = SubResource( 3 )
+action = "move_up"
+
+[node name="down" type="TouchScreenButton" parent="controls"]
+position = Vector2( 147.078, 537.401 )
+scale = Vector2( 1.5, 1.6 )
+normal = ExtResource( 6 )
+shape = SubResource( 4 )
+action = "move_down"
+
+[node name="right" type="TouchScreenButton" parent="controls"]
+position = Vector2( 257.387, 441.235 )
+scale = Vector2( 1.5, 1.5 )
+normal = ExtResource( 7 )
+shape = SubResource( 5 )
+action = "move_right"
+
+[node name="left" type="TouchScreenButton" parent="controls"]
+position = Vector2( 33.9411, 446.892 )
+scale = Vector2( 1.5, 1.5 )
+normal = ExtResource( 8 )
+shape = SubResource( 6 )
+action = "move_left"
+
+[node name="fire" type="TouchScreenButton" parent="controls"]
+position = Vector2( 1089.23, 456.515 )
+scale = Vector2( 2, 2 )
+normal = ExtResource( 5 )
+shape = SubResource( 7 )
+action = "Fire"
+[connection signal="killed" from="Enemy" to="." method="_on_Enemy_killed"]
